@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Adeleye Samuel | Portfolio</title>
+  <style>
+    :root {
+      --primary: #5b21b6;
+      --secondary: #60a5fa;
+      --accent: #f472b6;
+      --bg: #f8fafc;
+      --white: #fff;
+      --text: #222;
+      --card: #f1f5f9;
+    }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: linear-gradient(90deg, var(--primary) 60%, var(--secondary));
+      color: var(--white);
+      padding: 2.5rem 1rem 1.5rem 1rem;
+      text-align: center;
+      border-radius:0 0 1.5rem 1.5rem;
+      position: relative;
+    }
+    .profile-pic {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: -75px auto 1rem auto;
+      border: 5px solid var(--white);
+      box-shadow: 0 6px 20px 0 rgb(91 33 182 / 18%);
+      background: #eee;
+      position: relative;
+      z-index: 10;
+    }
+    .profile-pic img {
+      width: 100%; height:100%; object-fit: cover;
+    }
+    nav {
+      background: var(--primary);
+      display: flex;
+      justify-content: center;
+      border-radius: 0 0 1rem 1rem;
+      margin-bottom: 3rem;
+    }
+    nav ul {
+      display: flex; gap: 2rem; padding: 0; margin: 0; list-style: none;
+    }
+    nav li a {
+      color: var(--white); text-decoration: none; font-weight: 500;
+      display: block; padding: 1rem 0.3rem 0.7rem 0.3rem;
+      position: relative;
+    }
+    nav li a:hover,
+    nav li a.active {
+      color: var(--accent);
+      border-bottom: 2.5px solid var(--accent);
+    }
+    section {
+      max-width: 780px;
+      margin: 2rem auto; padding: 2rem 2rem;
+      background: var(--card);
+      border-radius: 1.1rem;
+      box-shadow: 0 7px 40px -2px #c0c0c0;
+    }
+    h2 {
+      color: var(--primary);
+      margin-top: 0;
+    }
+    .education-block {
+      background: var(--white);
+      margin: 1.5em 0;
+      padding: 1.1em 1em 1em 3em;
+      border-radius: 0.7em;
+      box-shadow: 0 2px 10px #ece9fb;
+      position: relative;
+    }
+    .education-block::before {
+      content: '';
+      position: absolute;
+      left: 1.05em; top: 1.55em;
+      width: 1.4em; height: 1.4em;
+      background: url('data:image/svg+xml;utf8,<svg width="24" height="24" fill="none" stroke="%235b21b6" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M3 8l9-5 9 5v2a9 9 0 1 1-18 0V8z"/><path d="M9 21V9h6v12"/></svg>');
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+    .cv-download {
+      display: inline-block;
+      margin-top: 0.7em;
+      padding: 0.6em 1.2em;
+      background: linear-gradient(90deg,var(--primary),var(--secondary));
+      color: var(--white);
+      border-radius: 0.4em;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .cv-download:hover {
+      background: linear-gradient(90deg,var(--accent),var(--primary));
+    }
+    /* Expertise SVG bullets */
+    .expertise-list { list-style: none; padding: 0; }
+    .expertise-list li {
+      margin-bottom: 0.8em; padding-left: 2em; position: relative;
+      font-size:1.1em;
+    }
+    .expertise-list li:before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0.36em;
+      width: 1.3em; height: 1.3em;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23"><circle fill="%2360a5fa" cx="11.5" cy="11.5" r="11.5"/><path stroke="%23fff" stroke-width="2.5" d="M6.5 12.5 l3.2 3 6-6"/></svg>');
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+    /* Skills pictogram */
+    .skills-chart {
+      margin: 2.7em 0 0.3em 0;
+      padding: 1.5em 1em 0.8em 1em;
+      background: var(--white);
+      border-radius: 0.9em;
+      box-shadow: 0 2px 14px 0 rgb(60 90 150 / 9%);
+    }
+    .skill-row {
+      display: flex; align-items: center; margin-bottom: 1.3em; gap: 1em;
+    }
+    .skill-icon {
+      width: 32px; height: 32px; margin-right: 0.4em;
+      flex-shrink:0;
+    }
+    .skill-label {
+      width: 160px; font-weight: 500; color: #333;
+    }
+    .skill-bar-bg {
+      flex:1; height: 22px; border-radius: 13px; background: #dbeafe; margin-right: .7em; overflow: hidden;
+    }
+    .skill-bar-fill {
+      height: 100%;
+      border-radius: 13px; background: linear-gradient(90deg,var(--primary),var(--secondary));
+      color: var(--white); font-size: 1em;
+      display: flex; align-items: center; justify-content: flex-end;
+      padding-right: 8px;
+      font-weight: 700;
+      transition: width 1s;
+    }
+    .work-exp-block {
+      background: var(--white);
+      margin: 1.5em 0;
+      padding: 1.3em 1.2em 1em 3.2em;
+      border-radius: 0.8em;
+      box-shadow: 0 2px 10px #ece9fb;
+      position: relative;
+    }
+    .work-exp-block::before {
+      content: '';
+      position: absolute;
+      left: 1.05em; top: 1.45em;
+      width: 1.7em; height: 1.7em;
+      background: url('data:image/svg+xml;utf8,<svg width="32" height="32" fill="none" stroke="%2360a5fa" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="10" width="22" height="13" rx="3" fill="%23f8fafc"/><path d="M7 12h18"/><circle cx="14" cy="17" r="2.5" fill="%235b21b6"/></svg>');
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+    /* Contact/Social Form Styling (same as before) */
+    form {
+      display: flex; flex-direction: column; gap:1.1em;
+      max-width:400px;margin:auto;
+    }
+    label { font-weight: 600; color: var(--primary);}
+    input, textarea, select {
+      padding: 0.67em 1em; border: 1.3px solid #a7b1c2;
+      border-radius: 6px;
+      font-size: 1em; font-family: inherit; outline: none;
+      transition: border 0.2s;
+    }
+    input:focus, textarea:focus, select:focus { border:1.3px solid var(--secondary);}
+    textarea { min-height: 90px; }
+    button[type=submit] {
+      padding: 0.9em 2em; border:none;
+      border-radius:7px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      color: var(--white); font-size:1.08em; font-weight:700;
+      cursor:pointer; margin-top:0.6em; box-shadow:0 2px 10px #b6b6e6;
+      transition: background 0.15s;
+    }
+    button[type=submit]:hover { background:linear-gradient(90deg, var(--secondary), var(--primary)); }
+    .social-block {
+      display:flex; flex-wrap:wrap; gap: 1.6em; font-size:1.03em; margin-top:1em;
+      justify-content:space-evenly;
+    }
+    .social-block a, .social-block span {
+      color: var(--primary); display: flex; align-items: center;font-weight:600;text-decoration:none;
+      gap: 0.6em; border-radius:5px; padding:0.15em 0.6em;
+      background:#e0e7ff; margin-bottom:0.5em
+    }
+    .social-block a:hover { color:var(--accent); background:#f3e8ff;}
+    .social-icon { width:22px;height:22px; }
+    footer {
+      text-align:center;
+      background:var(--primary); color: var(--white);
+      padding:1.6em 0;margin-top:2em; border-radius:1em 1em 0 0;
+    }
+    @media (max-width: 600px) {
+      section { padding:1em;}
+      .skill-label{width:90px;}
+      .skills-chart{padding:1em 0.4em;}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="profile-pic">
+      <!-- Replace with your picture -->
+       <p></p>
+      <img src="https://media.canva.com/v2/image-resize/format:JPG/height:540/quality:92/uri:ifs%3A%2F%2FM%2F16222c41-d4d0-4528-af97-9be554c8d241/watermark:F/width:507?csig=AAAAAAAAAAAAAAAAAAAAAJXdzeSDTLNEZgH1L82-Aes0_s5lA6Fk9XgBbchf8TpV&exp=1754399658&osig=AAAAAAAAAAAAAAAAAAAAABicUHBjsm8MaZzyq1_Q2G70yo3kJ7I7TbhnxkWYVLj5&signer=media-rpc&x-canva-quality=thumbnail_large" alt="Profile Picture"/>
+    </div>
+    <h1>Adeleye Samuel</h1>
+    <p>Virtual Assistant · Data Analyst · Inventory Management</p>
+    <p style="font-size:1.1em;font-weight:500;margin-top:0.3em;">Empowering businesses with remote expertise & data-driven solutions since 2019</p>
+  </header>
+  <nav>
+    <ul>
+      <li><a href="#about" class="active">About Me</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#expertise">Expertise</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#workexp">Work Experience</a></li>
+      <li><a href="#project">Project</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+  <section id="about">
+    <h2>About Me</h2>
+    <p>
+      I am an experienced <strong>Virtual Assistant</strong>, <strong>Data Analyst</strong>, and <strong>Inventory Manager</strong> with over <strong>5 years</strong> empowering businesses in operations, analytics, and efficient remote management.
+      <br><br>
+      My strengths include transforming raw data into actionable insights, maximizing productivity, and ensuring seamless virtual collaboration for organizations across industries. I thrive in dynamic, remote-first environments.
+    </p>
+  </section>
+  <section id="education">
+    <h2>Education</h2>
+    <div class="education-block">
+      <strong>B.Sc. Medical Laboratory Science</strong>
+      <br>
+      Olabisi Onabanjo University, 2024
+    </div>
+    <a class="cv-download" href="https://adeleyesamueltoyosi.my.canva.site/" target="_blank" download>
+      <svg style="vertical-align:middle;margin-right:0.4em;" height="22" width="22" fill="#fff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 16l6-6H6z"/><path d="M20 22H4c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h6v2H4v16h16V4h-6V2h6c1.1 0 2 .9 2 2v16c0 1.1-.9 2-2 2z"/></svg>
+      Download CV
+    </a>
+  </section>
+  <section id="expertise">
+    <h2>Expertise in Remote Work</h2>
+    <ul class="expertise-list">
+      <li>Data Entry & Processing</li>
+      <li>Email & Google Workspace Management</li>
+      <li>Graphic Design (<span style="color:#f472b6">Adobe Suite</span>, Canva)</li>
+      <li>Inventory Management & Backend Ops</li>
+      <li>Laboratory Management</li>
+      <li>ERP Software Proficiency</li>
+      <li>Client Communication & Virtual Assistance</li>
+      <li>SQL Data Reporting & Backend Coding</li>
+      <li>Online Research, Scheduling & More</li>
+    </ul>
+  </section>
+  <section id="skills">
+    <h2>Skills Overview</h2>
+    <div class="skills-chart">
+      <div class="skill-row">
+        <!-- Data Analysis SVG -->
+        <span class="skill-icon">
+          <svg width="32" height="32" fill="#60a5fa" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="13" width="4" height="8"/><rect x="9" y="9" width="4" height="12"/><rect x="15" y="5" width="4" height="16"/></svg>
+        </span>
+        <span class="skill-label">Data Analysis</span>
+        <span class="skill-bar-bg">
+          <span class="skill-bar-fill" style="width:90%;">90%</span>
+        </span>
+      </div>
+      <div class="skill-row">
+        <!-- Virtual Assistant SVG -->
+        <span class="skill-icon">
+          <svg width="32" height="32" fill="#5b21b6" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="8" r="4"/><path d="M2 20a10 10 0 0120 0H2z" /></svg>
+        </span>
+        <span class="skill-label">Virtual Assistant</span>
+        <span class="skill-bar-bg">
+          <span class="skill-bar-fill" style="width:90%;">90%</span>
+        </span>
+      </div>
+      <div class="skill-row">
+        <!-- SQL SVG -->
+        <span class="skill-icon">
+          <svg width="32" height="32" fill="#a5b4fc" xmlns="http://www.w3.org/2000/svg"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5" fill="none" stroke="#a5b4fc" stroke-width="2"/></svg>
+        </span>
+        <span class="skill-label">SQL</span>
+        <span class="skill-bar-bg">
+          <span class="skill-bar-fill" style="width:50%;">50%</span>
+        </span>
+      </div>
+      <div class="skill-row">
+        <!-- Backend Coding SVG -->
+        <span class="skill-icon">
+          <svg width="32" height="32" fill="#f472b6" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="7" width="20" height="10" rx="2" ry="2"/><rect x="8" y="17" width="8" height="2"/></svg>
+        </span>
+        <span class="skill-label">Backend Coding</span>
+        <span class="skill-bar-bg">
+          <span class="skill-bar-fill" style="width:50%;">50%</span>
+        </span>
+      </div>
+      <div class="skill-row">
+        <!-- Google Workspace SVG -->
+        <span class="skill-icon">
+          <svg width="32" height="32" fill="#34a853" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="6" width="8" height="12"/><rect x="14" y="6" width="8" height="12"/><rect x="6" y="10" width="12" height="4"/></svg>
+        </span>
+        <span class="skill-label">Google Workspace</span>
+        <span class="skill-bar-bg">
+          <span class="skill-bar-fill" style="width:85%;">85%</span>
+        </span>
+      </div>
+      <div class="skill-row">
+        <!-- Graphic Design SVG -->
+        <span class="skill-icon">
+          <svg width="32" height="32" fill="#f59e42" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/><rect x="10" y="6" width="4" height="12" rx="1" fill="#fff" /></svg>
+        </span>
+        <span class="skill-label">Graphic Design</span>
+        <span class="skill-bar-bg">
+          <span class="skill-bar-fill" style="width:70%;">70%</span>
+        </span>
+      </div>
+      <div class="skill-row">
+        <!-- Laboratory Management SVG -->
+        <span class="skill-icon">
+          <svg width="32" height="32" fill="#16a34a" xmlns="http://www.w3.org/2000/svg"><rect x="7" y="2" width="18" height="4" rx="2"/><rect x="11" y="6" width="10" height="20" rx="2"/><rect x="3" y="10" width="6" height="16" rx="1"/></svg>
+        </span>
+        <span class="skill-label">Laboratory Management</span>
+        <span class="skill-bar-bg">
+          <span class="skill-bar-fill" style="width:80%;">80%</span>
+        </span>
+      </div>
+      <div class="skill-row">
+        <!-- ERP Software SVG -->
+        <span class="skill-icon">
+          <svg width="32" height="32" fill="#4f46e5" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="8" width="24" height="16" rx="4"/><circle cx="10" cy="16" r="3" fill="#fff"/><rect x="16" y="14" width="8" height="4" rx="2" fill="#fff"/></svg>
+        </span>
+        <span class="skill-label">ERP Software Proficiency</span>
+        <span class="skill-bar-bg">
+          <span class="skill-bar-fill" style="width:90%;">90%</span>
+        </span>
+      </div>
+    </div>
+  </section>
+  <section id="workexp">
+    <h2>Work Experience</h2>
+    <div class="work-exp-block">
+      <strong>Production Data Analyst</strong> <br>
+      <span style="color:#5b21b6;font-weight:500;">Nature Bounty Health</span>
+      <br>
+      <span style="font-size:0.95em;color:#666;">2022 &ndash; 2024</span>
+      <ul style="margin:1em 0 0 0.2em;">
+        <li>Optimized production data systems and reporting for 20+ product lines.</li>
+        <li>Implemented inventory and ERP solutions that reduced data-entry errors by 35%.</li>
+        <li>Trained staff in best data governance practices and streamlined process bottlenecks.</li>
+        <li>Delivered key insights leading to more efficient manufacturing and resource allocation.</li>
+      </ul>
+    </div>
+  </section>
+  <section id="project">
+    <h2>Projects</h2>
+    <p>
+      <strong>Python Calculator:</strong>
+      Built a command-line calculator in Python for basic arithmetic operations, showcasing strong fundamentals in logic and coding.<br>
+      <a href="https://github.com/Adeleye-808/Sat-Guru-first-Project.git" target="_blank" style="color:var(--primary);font-weight:500;">View on GitHub</a>
+    </p>
+  </section>
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <form action="https://formspree.io/f/xldlpbzq" method="POST">
+      <label for="name">Full Name</label>
+      <input type="text" name="name" id="name" required>
+      <label for="email">Email Address</label>
+      <input type="email" name="_replyto" id="email" required>
+      <label for="service">Interested In</label>
+      <select name="service" id="service">
+        <option value="">Select a Service</option>
+        <option>Virtual Assistance</option>
+        <option>Data Analysis</option>
+        <option>Inventory Management</option>
+        <option>Laboratory Management</option>
+        <option>ERP Support</option>
+        <option>Google Workspace Management</option>
+        <option>Data Entry</option>
+        <option>Graphic Design</option>
+        <option>Other</option>
+      </select>
+      <label for="message">Message</label>
+      <textarea name="message" id="message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+    <div class="social-block">
+      <a href="mailto:adeleyes808@gmail.com">
+        <svg class="social-icon" fill="#5b21b6" viewBox="0 0 24 24"><path d="M4 4h16v16H4z" fill="none"/><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 2l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"/></svg>
+        Email
+      </a>
+      <a href="https://www.facebook.com/share/15ziBVzcWK/" target="_blank" rel="noopener">
+        <svg class="social-icon" fill="#1877f3" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#eaf1fb"/><path d="M17.53 14.803l.54-3.513H14.47V8.836c0-.96.462-1.897 1.908-1.897h1.175V4.156a17.27 17.27 0 0 0-2.516-.205c-2.602 0-4.038 1.574-4.038 4.218v2.121H7.5v3.513h3.499v8.456a12.075 12.075 0 0 0 2.141.187c.748 0 1.477-.065 2.153-.187v-8.456h2.237z" fill="#1877f3"/></svg>
+        Facebook
+      </a>
+      <a href="https://x.com/Adeleye79888079?t=lEGwqH43cZohaoB9HqOAEA&s=09" target="_blank" rel="noopener">
+        <svg class="social-icon" fill="#000" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#fff"/><path d="M18 6l-2.37 2.739L18 12l-2.368 2.26 2.368 2.74-3.77-2.74L6 6h6.37z" fill="#111"/></svg>
+        Twitter/X
+      </a>
+      <a href="https://github.com/Adeleye-808" target="_blank" rel="noopener">
+        <svg class="social-icon" fill="#181717" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#eaf1fb"/><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577 0-.285-.011-1.04-.016-2.04-3.338.724-4.042-1.614-4.042-1.614-.547-1.388-1.334-1.757-1.334-1.757-1.09-.745.083-.729.083-.729 1.205.085 1.84 1.236 1.84 1.236 1.07 1.834 2.809 1.304 3.495.997.108-.775.418-1.305.762-1.605-2.665-.304-5.466-1.334-5.466-5.934 0-1.31.469-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.229A11.51 11.51 0 0112 6.844c1.02.005 2.045.138 3.003.404 2.28-1.553 3.282-1.229 3.282-1.229.648 1.653.243 2.873.12 3.176.77.84 1.234 1.91 1.234 3.22 0 4.61-2.806 5.625-5.478 5.921.43.37.823 1.102.823 2.222 0 1.604-.015 2.896-.015 3.293 0 .317.216.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        GitHub
+      </a>
+      <span>
+        <svg class="social-icon" fill="#5b21b6" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#f3e8ff"/><path d="M6 12.5l6 6l6-6" stroke="#5b21b6" stroke-width="2" fill="none"/><circle cx="12" cy="12.5" r="2" fill="#fff" stroke="#a5b4fc" stroke-width="1"/></svg>
+        08144046220
+      </span>
+    </div>
+  </section>
+  <footer>
+    &copy; 2025 Adeleye Samuel. All rights reserved.
+  </footer>
+</body>
+</html>
